@@ -26,4 +26,5 @@ def reset():
     return jsonify(game.state())
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    debug_mode = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
+    app.run(port=5000, debug=debug_mode)
