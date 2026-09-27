@@ -36,8 +36,6 @@ def move():
 @app.route("/update", methods=["POST"])
 @limiter.limit("15 per second")
 def update():
-    if not check_auth():
-        return jsonify({"error": "unauthorized"}), 401
     return jsonify(game.update())
 
 @app.route("/reset", methods=["POST"])
