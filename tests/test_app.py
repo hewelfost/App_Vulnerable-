@@ -43,7 +43,11 @@ def test_authorized_update_succeeds(client):
     assert resp.status_code == 200
 
 def test_update_returns_success(client):
-    resp = client.post("/update", json={})
+    resp = client.post(
+        "/update",
+        json={},
+        headers={"X-API-KEY": "dev-secret-key"},
+    )
     assert resp.status_code == 200
 
 def test_invalid_move_payload_returns_400(client):
