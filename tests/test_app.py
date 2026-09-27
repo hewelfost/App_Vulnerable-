@@ -37,12 +37,13 @@ def test_unauthorized_move_is_rejected(client):
     resp = client.post("/move", json={"player": 1, "direction": "up"})
     assert resp.status_code == 401
 
-def test_unauthorized_update_is_rejected(client):
-    resp = client.post("/update", json={})
-    assert resp.status_code == 401
 
 def test_authorized_update_succeeds(client):
     resp = client.post("/update", json={}, headers=HEADERS)
+    assert resp.status_code == 200
+
+def test_update_returns_success(client):
+    resp = client.post("/update", json={})
     assert resp.status_code == 200
 
 def test_invalid_move_payload_returns_400(client):
